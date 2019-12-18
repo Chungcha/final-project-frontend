@@ -1,11 +1,11 @@
 import React from "react"
 
-const Matched = () => {
-    return (
+const History = () => {
+    return(
         <div>
             
         </div>
     )
 }
 
-export default Matched
+export default History

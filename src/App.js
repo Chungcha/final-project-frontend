@@ -1,9 +1,11 @@
 import React from 'react';
 import './App.css';
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
-import Nav from "./components/Nav"
 import Login from "./components/Login"
 import Home from "./containers/Home"
+import History from "./containers/History"
+import Profile from "./components/Profile"
+// import { Router, Link } from "@reach/router"
 
 const URL = "http://localhost:3000/"
 
@@ -28,6 +30,13 @@ class App extends React.Component{
     }
   }
 
+  handleLogOut = () => {
+    this.updateCurrentUser(null)
+    localStorage.removeItem("jwt")
+    // navigate("/")
+    //navigate to root
+  }
+
   updateCurrentUser = (userData) => {
     this.setState({
       currentUser: userData
@@ -42,7 +51,7 @@ class App extends React.Component{
           "Content-Type": "Application/json",
           "Accept": "Application/json"
       },
-      body: JSON.stringify({...this.state.currentUser, cuisine})
+      body: JSON.stringify({user:this.state.currentUser, cuisine})
     }
     fetch("http://localhost:3000/wait_queue", objConfig)
     .then(response => response.json())
@@ -52,9 +61,10 @@ class App extends React.Component{
   render(){
     return (
       <div className="home-container" >
-        {this.state.currentUser ? <Home submitFoodChoice={this.submitFoodChoice}/> : <Login updateCurrentUser={this.updateCurrentUser}/> }
+        {this.state.currentUser ? <Home handleLogOut={this.handleLogOut} submitFoodChoice={this.submitFoodChoice} currentUser={this.state.currentUser}/> : <Login updateCurrentUser={this.updateCurrentUser}/> }
           <Router>
-            
+            <Route exact path="/profile" render={()=><Profile />}/>
+            <Route exact path = "/history" render={()=><History />}/>
           </Router>
         </div>
     )

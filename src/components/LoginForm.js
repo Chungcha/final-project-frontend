@@ -37,7 +37,7 @@ export default class LoginForm extends React.Component {
         .then(response => response.json())
         .then(userData=>{
             localStorage.setItem("jwt", userData.jwt)
-            this.props.updateCurrentUser(userData.user)
+            this.props.updateCurrentUser({user: userData.user})
         })
     }
 
