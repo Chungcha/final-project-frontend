@@ -63,7 +63,7 @@ class App extends React.Component{
       <div className="home-container" >
         {this.state.currentUser ? <Home handleLogOut={this.handleLogOut} submitFoodChoice={this.submitFoodChoice} currentUser={this.state.currentUser}/> : <Login updateCurrentUser={this.updateCurrentUser}/> }
         <Route exact path="/profile" render={()=><Profile />}/>
-        <Route exact path = "/history" render={()=><History />}/>
+        <Route exact path = "/history" render={()=><History pastMeetups={this.state.currentUser}/>}/>
         </div>
     )
   }
