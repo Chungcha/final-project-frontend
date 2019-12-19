@@ -1,10 +1,11 @@
 import React from "react"
+import { Container } from "semantic-ui-react"
 
 const History = () => {
     return(
-        <div>
-            
-        </div>
+        <Container>
+            This be that History
+        </Container>
     )
 }
 

@@ -17,27 +17,31 @@ export default class Nav extends React.Component {
                     name='home'
                     active={activeItem === 'home'}
                     onClick={this.handleItemClick}
+                    as={Link}
+                    to="/Home"
                 />
                 <Menu.Menu position="right">
                     <Menu.Item
                         name='profile'
                         active={activeItem === 'profile'}
                         onClick={this.handleItemClick}
+                        as={Link}
+                        to="/Profile"
                     />
                     <Menu.Item
                         name='history'
                         active={activeItem === 'history'}
                         onClick={this.handleItemClick}
-                    />
+                        as={Link}
+                        to="/History"
+                    >
+                    </Menu.Item>
                     <Menu.Item
                         name='logout'
                         onClick={this.props.handleLogOut}
                     />
                 </Menu.Menu>    
                 </Menu>
-                <Segment>
-                    <img src='https://react.semantic-ui.com/images/wireframe/paragraph.png' />
-                </Segment>
             </nav>
         )
     }

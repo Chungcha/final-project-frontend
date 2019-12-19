@@ -1,10 +1,10 @@
 import React from 'react';
 import './App.css';
-import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import Login from "./components/Login"
 import Home from "./containers/Home"
 import History from "./containers/History"
 import Profile from "./components/Profile"
+import { Route } from "react-router-dom";
 // import { Router, Link } from "@reach/router"
 
 const URL = "http://localhost:3000/"
@@ -62,10 +62,8 @@ class App extends React.Component{
     return (
       <div className="home-container" >
         {this.state.currentUser ? <Home handleLogOut={this.handleLogOut} submitFoodChoice={this.submitFoodChoice} currentUser={this.state.currentUser}/> : <Login updateCurrentUser={this.updateCurrentUser}/> }
-          <Router>
-            <Route exact path="/profile" render={()=><Profile />}/>
-            <Route exact path = "/history" render={()=><History />}/>
-          </Router>
+        <Route exact path="/profile" render={()=><Profile />}/>
+        <Route exact path = "/history" render={()=><History />}/>
         </div>
     )
   }

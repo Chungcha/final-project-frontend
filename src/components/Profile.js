@@ -1,12 +1,13 @@
 import React from "react"
+import { Container, Segment } from "semantic-ui-react"
 
 export default class Profile extends React.Component {
     
     render(){
         return(
-            <div>
+            <Segment>
                 This be dat profile
-            </div>
+            </Segment>
         )
     }
 }
