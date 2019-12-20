@@ -4,7 +4,7 @@ import Login from "./components/Login"
 import Home from "./containers/Home"
 import History from "./containers/History"
 import Profile from "./components/Profile"
-import { Route } from "react-router-dom";
+import { Route, Redirect } from "react-router-dom";
 // import { Router, Link } from "@reach/router"
 
 const URL = "http://localhost:3000/"
@@ -44,27 +44,43 @@ class App extends React.Component{
   }
 
   submitFoodChoice = (cuisine) => {
-    let objConfig = {
+    const objConfig = {
       method: "POST",
       headers: {
           "Authorization": `Bearer ${localStorage.getItem("jwt")}`,
           "Content-Type": "Application/json",
           "Accept": "Application/json"
       },
-      body: JSON.stringify({user:this.state.currentUser, cuisine})
+      body: JSON.stringify({...this.state.currentUser, cuisine})
     }
     fetch("http://localhost:3000/wait_queue", objConfig)
     .then(response => response.json())
-    .then(userData=>console.log(userData))
+    .then(userData=>{
+      if (userData.waitqueue){
+        this.setState({currentUser:{
+          user: {...this.state.currentUser.user, wait_queue: userData.waitqueue
+        }}})
+      } else {
+        this.setState({
+          currentUser: {
+            user: {...this.state.currentUser.user, future_meetups: [userData.meetup]}
+          }
+        })
+      }
+      console.log(userData)})
+    //Update state depending on the data...waitqueue, matched, pending?
   }
 
   render(){
     return (
       <div className="home-container" >
         {this.state.currentUser ? <Home handleLogOut={this.handleLogOut} submitFoodChoice={this.submitFoodChoice} currentUser={this.state.currentUser}/> : <Login updateCurrentUser={this.updateCurrentUser}/> }
-        <Route exact path="/profile" render={()=><Profile />}/>
-        <Route exact path = "/history" render={()=><History pastMeetups={this.state.currentUser}/>}/>
-        </div>
+
+        <Route exact path="/profile" render={()=>{ return this.state.currentUser ? <Profile/> : <Redirect to="/"/>
+    }}/>
+
+        <Route exact path = "/history" render={()=>{ return this.state.currentUser ? <History pastMeetups={this.state.currentUser}/> : <Redirect to="/"/>}}/>
+      </div>
     )
   }
 }

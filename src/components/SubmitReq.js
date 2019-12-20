@@ -32,10 +32,10 @@ export default class SubmitReq extends React.Component{
         </Form.Field>
         <Form.Field>
           <Radio
-            label='Ethiopean'
+            label='Ethiopian'
             name='radioGroup'
-            value='Ethiopean'
-            checked={this.state.value === 'Ethiopean'}
+            value='Ethiopian'
+            checked={this.state.value === 'Ethiopian'}
             onChange={this.handleChange}
           />
         </Form.Field>

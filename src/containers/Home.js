@@ -18,7 +18,7 @@ class Home extends React.Component{
         return (
             <div>
                 <Nav handleLogOut={this.props.handleLogOut}/>
-                {wait_queue ? <Pending wait_queue={wait_queue}/> : this.props.currentUser.user && future_meetups.length > 0 ? <Matched future_meetups={future_meetups}/> : <SubmitReq submitFoodChoice={this.props.submitFoodChoice}/> }
+                {wait_queue ? <Pending wait_queue={wait_queue}/> : future_meetups.length > 0 ? <Matched future_meetups={future_meetups}/> : <SubmitReq submitFoodChoice={this.props.submitFoodChoice}/> }
                 
                 {/* Might need to make nested terinary?? */}
                 {/* {future_meetups.length > 0 ? <Matched future_meetups={future_meetups}/> : <SubmitReq submitFoodChoice={this.props.submitFoodChoice}/> } */}

@@ -1,4 +1,5 @@
 import React from "react"
+import { Form } from "semantic-ui-react"
 
 const URL = "http://localhost:3000/"
 
@@ -36,14 +37,18 @@ export default class LoginForm extends React.Component {
         fetch(`http://localhost:3000/login`, objConfig)
         .then(response => response.json())
         .then(userData=>{
+            if (userData.message) {
+                alert (userData.message)
+            } else {
             localStorage.setItem("jwt", userData.jwt)
             this.props.updateCurrentUser({user: userData.user})
+            }
         })
     }
 
     render(){
         return(
-            <form className="ui form" onSubmit={(e)=>{this.postLogin(e)}}>
+            <Form className="ui form" onSubmit={(e)=>{this.postLogin(e)}}>
                 <div className="field">
                     <label>Username</label>
                     <input 
@@ -65,7 +70,7 @@ export default class LoginForm extends React.Component {
                     />
                 </div>
                 <button className="ui button" type="submit">Submit</button>
-            </form>
+            </Form>
         )
     }
 
