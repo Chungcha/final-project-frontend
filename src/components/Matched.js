@@ -1,12 +1,31 @@
 import React from "react"
 import { Segment } from "semantic-ui-react"
+import MyMapComponent from "./MyMapComponent"
+import Countdown from "react-countdown-now"
+import { Header, Grid, Image } from "semantic-ui-react"
+import Pictures from "./Pictures"
+import RestaurantInfo from "./RestaurantInfo"
+import UsersContainer from "../containers/UsersContainer"
+import "pure-react-carousel/dist/react-carousel.es.css"
 
 export default class Matched extends React.Component{
 
-    state={}
+  constructor(props){
+    super(props)
+    this.state={
+      meetupData: {
+        meetup: {
+          users: []
+        },
+        restaurantInfo: {
+          photos: []
+        }
+      }
+    }
+  }
 
     componentDidMount(){
-        const { id } = this.props.future_meetups[0]
+        const { id } = this.props.future_meetups
         fetch(`http://localhost:3000/meetups/${id}`, {
             headers: {
               "Authorization": `Bearer ${localStorage.getItem("jwt")}`
@@ -14,17 +33,49 @@ export default class Matched extends React.Component{
           })
             .then(response => response.json())
             .then(meetupData=>{
-              debugger
+              // debugger
               this.setState({meetupData})})
     }
 
+    renderer = ({ days, hours, minutes, seconds, completed }) => {
+      if (completed){
+        return <span>Meetup has taken place!</span>
+      } else {
+      return <span>{days} day, {hours} hours, {minutes}, and {seconds} seconds before your next meetup!</span>
+      }
+    }
+
     render(){
-        console.log(this.props)
+      // const { meetupData:{ meetup:{ users } } } = this.state
+        // console.log(this.state.meetupData.meetup.restaurantInfo.photos)
         return (
             <Segment>
-              <div >
-                <iframe width="100%" height="600" src="https://maps.google.com/maps?width=100%&amp;height=600&amp;hl=en&amp;q=4551%20Forest%20Drive+(Home)&amp;ie=UTF8&amp;t=&amp;z=15&amp;iwloc=B&amp;output=embed" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"><a href="https://www.maps.ie/coordinates.html">gps coordinates finder</a></iframe>
-              </div>
+              <Grid divided='vertically'>
+                <Grid.Row columns={1}>
+                  <Header 
+                    date={this.props.future_meetups.datetime}
+                    renderer={this.renderer}
+                    as={Countdown}/>
+                </Grid.Row>
+
+                <Grid.Row columns={3}>
+                  <Grid.Column>
+                    {this.state.meetupData.meetup.restaurantInfo && <MyMapComponent restaurantCenter={this.state.meetupData.meetup.restaurantInfo.coordinates}/>}
+                  </Grid.Column>
+
+                  <Grid.Column>
+                    <RestaurantInfo info={this.state.meetupData.meetup.restaurantInfo}/>
+                  </Grid.Column>
+
+                  <Grid.Column>
+                    {this.state.meetupData.meetup.restaurantInfo && <Pictures pictures={this.state.meetupData.meetup.restaurantInfo.photos}/>}
+                  </Grid.Column>
+                </Grid.Row>
+
+                <Grid.Row columns={4}>
+                  <UsersContainer users={this.state.meetupData.meetup.users}/>
+                </Grid.Row>
+              </Grid>
             </Segment>
         )
     }

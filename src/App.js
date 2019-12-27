@@ -5,6 +5,7 @@ import Home from "./containers/Home"
 import History from "./containers/History"
 import Profile from "./components/Profile"
 import { Route, Redirect } from "react-router-dom";
+import Nav from "./components/Nav"
 // import { Router, Link } from "@reach/router"
 
 const URL = "http://localhost:3000/"
@@ -74,12 +75,19 @@ class App extends React.Component{
   render(){
     return (
       <div className="home-container" >
-        {this.state.currentUser ? <Home handleLogOut={this.handleLogOut} submitFoodChoice={this.submitFoodChoice} currentUser={this.state.currentUser}/> : <Login updateCurrentUser={this.updateCurrentUser}/> }
 
-        <Route exact path="/profile" render={()=>{ return this.state.currentUser ? <Profile/> : <Redirect to="/"/>
+        {this.state.currentUser ? <Nav handleLogOut={this.handleLogOut}/> : null }
+
+
+
+        <Route exact path="/home" render={()=>{return this.state.currentUser ? <Home handleLogOut={this.handleLogOut} submitFoodChoice={this.submitFoodChoice} currentUser={this.state.currentUser}/> : <Redirect to="/"/> }} />
+
+        <Route exact path="/" render={()=>{return this.state.currentUser ? <Redirect to="/home"/> : <Login updateCurrentUser={this.updateCurrentUser}/>}}/>
+
+        <Route exact path="/profile" render={()=>{ return this.state.currentUser ? <Profile userInfo={this.state.currentUser.user} /> : <Redirect to="/"/>
     }}/>
 
-        <Route exact path = "/history" render={()=>{ return this.state.currentUser ? <History pastMeetups={this.state.currentUser}/> : <Redirect to="/"/>}}/>
+        <Route exact path = "/history" render={()=>{ return this.state.currentUser ? <History pastMeetups={this.state.currentUser.user.past_meetups}/> : <Redirect to="/"/>}}/>
       </div>
     )
   }
