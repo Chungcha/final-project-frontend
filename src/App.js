@@ -15,7 +15,7 @@ class App extends React.Component{
   constructor(){
     super()
     this.state= {
-      currentUser: null 
+      currentUser: null
     }
   }
 
@@ -27,7 +27,7 @@ class App extends React.Component{
         }
       })
       .then(response=>response.json())
-      .then(user=>this.updateCurrentUser(user))
+      .then(userData=>{this.updateCurrentUser(userData.user)})
     }
   }
 
@@ -52,24 +52,19 @@ class App extends React.Component{
           "Content-Type": "Application/json",
           "Accept": "Application/json"
       },
-      body: JSON.stringify({...this.state.currentUser, cuisine})
+      body: JSON.stringify({user: this.state.currentUser, cuisine})
     }
     fetch("http://localhost:3000/wait_queue", objConfig)
     .then(response => response.json())
     .then(userData=>{
       if (userData.waitqueue){
-        this.setState({currentUser:{
-          user: {...this.state.currentUser.user, wait_queue: userData.waitqueue
-        }}})
+        this.setState({currentUser:{...this.state.currentUser, wait_queue: userData.waitqueue}})
       } else {
         this.setState({
-          currentUser: {
-            user: {...this.state.currentUser.user, future_meetups: [userData.meetup]}
+          currentUser: {...this.state.currentUser, future_meetups: [userData.meetup]
           }
         })
-      }
-      console.log(userData)})
-    //Update state depending on the data...waitqueue, matched, pending?
+      }})
   }
 
   render(){

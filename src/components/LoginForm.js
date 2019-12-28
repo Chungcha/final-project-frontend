@@ -41,7 +41,7 @@ export default class LoginForm extends React.Component {
                 alert (userData.message)
             } else {
             localStorage.setItem("jwt", userData.jwt)
-            this.props.updateCurrentUser({user: userData.user})
+            this.props.updateCurrentUser(userData.user)
             }
         })
     }

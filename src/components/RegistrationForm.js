@@ -36,8 +36,9 @@ export default class RegistrationForm extends React.Component {
             fetch("http://localhost:3000/users", objConfig)
             .then(response => response.json())
             .then(userData=>{
+                debugger
                 localStorage.setItem("jwt", userData.jwt)
-                this.props.updateCurrentUser({user: userData.user})
+                this.props.updateCurrentUser(userData.user)
             })
             //UPDATE THE CURRENT USER WITH THIS DATA
         } else {

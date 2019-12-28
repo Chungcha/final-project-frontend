@@ -60,7 +60,7 @@ export default class Matched extends React.Component{
 
                 <Grid.Row columns={3}>
                   <Grid.Column>
-                    {this.state.meetupData.meetup.restaurantInfo && <MyMapComponent restaurantCenter={this.state.meetupData.meetup.restaurantInfo.coordinates}/>}
+                    {/* {this.state.meetupData.meetup.restaurantInfo && <MyMapComponent restaurantCenter={this.state.meetupData.meetup.restaurantInfo.coordinates}/>} */}
                   </Grid.Column>
 
                   <Grid.Column>

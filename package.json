@@ -7,7 +7,7 @@
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.3.2",
     "@testing-library/user-event": "^7.1.2",
-    "google-map-react": "^1.1.5",
+    "activestorage": "^5.2.4-1",
     "pure-react-carousel": "^1.24.1",
     "react": "^16.12.0",
     "react-countdown-now": "^2.1.2",

@@ -23,7 +23,7 @@ export default class RestaurantInfo extends React.Component{
                     </Card.Description>
                 </Card.Content>}
                 {this.props.info && <Card.Content extra>
-                    <a href={this.props.info.url}>
+                    <a href={this.props.info.url} target="_blank">
                         <ReviewIcon rating={this.props.info.rating}/> 
                         {this.props.info.review_count} Reviews
                     </a>

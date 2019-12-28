@@ -12,7 +12,7 @@ class Home extends React.Component{
     }
 
     render(){
-        const {future_meetups, wait_queue, past_meetups} = this.props.currentUser.user
+        const {future_meetups, wait_queue, past_meetups} = this.props.currentUser
         return (
             <div>
                 {wait_queue ? <Pending wait_queue={wait_queue}/> : future_meetups.length > 0 ? <Matched future_meetups={future_meetups[0]}/> : <SubmitReq submitFoodChoice={this.props.submitFoodChoice}/> }
