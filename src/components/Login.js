@@ -1,14 +1,21 @@
 
 import React from "react"
-import { Button, Divider, Form, Grid, Segment } from "semantic-ui-react"
+import { Button, Divider, Grid, Segment, Image } from "semantic-ui-react"
 import LoginForm from "./LoginForm"
 import RegistrationForm from "./RegistrationForm"
+import "../styles/login.css"
+import logo_white from "../images/logo_white.png"
+import logo_black from "../images/logo_black.png"
 
 class Login extends React.Component {
 
     render(){
         return (
-            <Segment>
+            <div>
+                <div className="welcome">
+                    <Image className="logo" src={logo_white}/>
+                </div>
+                <Segment>
                 <Grid columns={2} relaxed="very" stackable>
                     
                     <Grid.Column>
@@ -21,7 +28,8 @@ class Login extends React.Component {
                 
                 </Grid>
                 <Divider vertical>Or</Divider>
-            </Segment>
+                </Segment>
+            </div>
         )
     }
 

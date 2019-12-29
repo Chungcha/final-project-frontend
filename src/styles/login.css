@@ -1,0 +1,16 @@
+.welcome {
+    background-image: url("../images/kevin-curtis-QlnUpMED6Qs-unsplash.jpg");
+    background-size: 100%;
+    background-repeat: no-repeat;
+    height: 400px;
+    position: relative;
+    z-index: 1;
+}
+
+img.logo {
+    width: 150px;
+    height: 70px;
+    padding: 10px;
+    position: absolute;
+    z-index: 2;
+}
