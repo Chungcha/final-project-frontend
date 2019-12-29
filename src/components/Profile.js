@@ -1,26 +1,25 @@
 import React from "react"
-import { Container, Segment, Form, FormButton } from "semantic-ui-react"
+import { Container, Image, Segment, Form, FormButton } from "semantic-ui-react"
 
 export default class Profile extends React.Component {
     
     constructor(props){
         super(props)
         this.state={
-            userInfo: {}
+            currentUser: {}
         }
     }
 
     componentDidMount(){
         this.setState({
-            userInfo: this.props.userInfo
+            currentUser: this.props.currentUser
         })
     }
 
     updateState = (e) => {
-        console.log(e.target.name)
         this.setState({
-            userInfo: {
-                ...this.state.userInfo, [e.target.name]: e.target.value
+            currentUser: {
+                ...this.state.currentUser, [e.target.name]: e.target.value
             }
         })
     }
@@ -35,28 +34,29 @@ export default class Profile extends React.Component {
             },
             body: JSON.stringify({
                 user: {
-                    id: this.state.userInfo.id,
-                    first_name: this.state.userInfo.first_name,
-                    last_name: this.state.userInfo.last_name,
-                    username: this.state.userInfo.username
+                    id: this.state.currentUser.id,
+                    first_name: this.state.currentUser.first_name,
+                    last_name: this.state.currentUser.last_name,
+                    username: this.state.currentUser.username
                 }
             
             })
           }
-          fetch(`http://localhost:3000/users/${this.state.userInfo.id}`, objConfig)
+          fetch(`http://localhost:3000/users/${this.state.currentUser.id}`, objConfig)
           .then(response => response.json())
-          .then(userData=>console.log(userData))
+          .then(userData=>this.props.updateCurrentUser(userData.user))
     }
 
     render(){
         return(
             <Segment>
                 <Form onSubmit={this.submitChanges}>
+                    <Image src={`http://localhost:3000/${this.props.currentUser.avatar}`} size="medium"/>
                     <Form.Field>
                         <label>Username</label>
                         <input
                             name="username"
-                            value={this.state.userInfo.username}
+                            value={this.state.currentUser.username}
                             onChange={this.updateState}
                         />
                     </Form.Field>
@@ -65,7 +65,7 @@ export default class Profile extends React.Component {
                             <label>First Name</label>
                             <input 
                                 name="first_name"
-                                value={this.state.userInfo.first_name}
+                                value={this.state.currentUser.first_name}
                                 onChange={this.updateState} 
                             />
                         </Form.Field>
@@ -73,7 +73,7 @@ export default class Profile extends React.Component {
                             <label>Last Name</label>
                             <input 
                                 name="last_name"
-                                value={this.state.userInfo.last_name}
+                                value={this.state.currentUser.last_name}
                                 onChange={this.updateState} 
                             />
                         </Form.Field>

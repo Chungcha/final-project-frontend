@@ -2,7 +2,7 @@ import React from "react"
 import { Segment } from "semantic-ui-react"
 import MyMapComponent from "./MyMapComponent"
 import Countdown from "react-countdown-now"
-import { Header, Grid, Image } from "semantic-ui-react"
+import { Header, Grid, Image, Card } from "semantic-ui-react"
 import Pictures from "./Pictures"
 import RestaurantInfo from "./RestaurantInfo"
 import UsersContainer from "../containers/UsersContainer"
@@ -60,7 +60,9 @@ export default class Matched extends React.Component{
 
                 <Grid.Row columns={3}>
                   <Grid.Column>
-                    {/* {this.state.meetupData.meetup.restaurantInfo && <MyMapComponent restaurantCenter={this.state.meetupData.meetup.restaurantInfo.coordinates}/>} */}
+                    <Card fluid>
+                    {this.state.meetupData.meetup.restaurantInfo && <MyMapComponent restaurantCenter={this.state.meetupData.meetup.restaurantInfo.coordinates}/>}
+                    </Card>
                   </Grid.Column>
 
                   <Grid.Column>
@@ -68,7 +70,9 @@ export default class Matched extends React.Component{
                   </Grid.Column>
 
                   <Grid.Column>
+                    <Card>
                     {this.state.meetupData.meetup.restaurantInfo && <Pictures pictures={this.state.meetupData.meetup.restaurantInfo.photos}/>}
+                    </Card>
                   </Grid.Column>
                 </Grid.Row>
 

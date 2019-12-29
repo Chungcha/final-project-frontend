@@ -78,7 +78,6 @@ export default class RegistrationForm extends React.Component {
     }
 
     render(){
-        console.log(this.state.newUserInfo.avatar)
         return (
             <Form onSubmit={this.submitNewUserInfo}>
                 <Form.Field>
