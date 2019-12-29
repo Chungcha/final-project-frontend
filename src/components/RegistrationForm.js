@@ -1,5 +1,6 @@
 import React from "react"
 import { Form,Button } from "semantic-ui-react"
+import { DirectUpload } from 'activestorage'
 
 export default class RegistrationForm extends React.Component {
 
@@ -9,16 +10,25 @@ export default class RegistrationForm extends React.Component {
             last_name: "",
             username: "",
             password: "",
-            confirmPassword: ""
+            confirmPassword: "",
+            avatar: {}
         }
     }
 
     handleFormChange = (e) => {
-        this.setState({
-            newUserInfo: {
-                ...this.state.newUserInfo, [e.target.name]:e.target.value
-            }
-        })
+        if (e.target.name === 'avatar'){
+            this.setState({
+                newUserInfo: {
+                    ...this.state.newUserInfo, [e.target.name]: e.target.files[0]
+                }
+            })
+        } else {
+            this.setState({
+                newUserInfo: {
+                    ...this.state.newUserInfo, [e.target.name]:e.target.value
+                }
+            })
+        }
     }
 
     submitNewUserInfo = () => {
@@ -36,9 +46,8 @@ export default class RegistrationForm extends React.Component {
             fetch("http://localhost:3000/users", objConfig)
             .then(response => response.json())
             .then(userData=>{
-                debugger
                 localStorage.setItem("jwt", userData.jwt)
-                this.props.updateCurrentUser(userData.user)
+                this.uploadFile(this.state.newUserInfo.avatar, userData.user)
             })
             //UPDATE THE CURRENT USER WITH THIS DATA
         } else {
@@ -46,7 +55,30 @@ export default class RegistrationForm extends React.Component {
         }
     }
 
+    uploadFile = (file, user) => {
+        const upload = new DirectUpload(file, 'http://localhost:3000/rails/active_storage/direct_uploads')
+        upload.create((error, blob) => {
+            if (error) {
+                console.log(error)
+            } else {
+                fetch(`http://localhost:3000/updateAvatar`, {
+                    method: 'POST',
+                    headers: {
+                        "Authorization": `Bearer ${localStorage.getItem("jwt")}`,
+                        'Content-Type': 'application/json',
+                        'Accept': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        avatar: blob.signed_id})
+                })
+                .then(response=>response.json())
+                .then(userData=>this.props.updateCurrentUser(userData.user))
+            }
+        })
+    }
+
     render(){
+        console.log(this.state.newUserInfo.avatar)
         return (
             <Form onSubmit={this.submitNewUserInfo}>
                 <Form.Field>
@@ -93,6 +125,14 @@ export default class RegistrationForm extends React.Component {
                         type="password" 
                         name="confirmPassword"
                         value={this.state.confirmPassword}
+                        onChange={this.handleFormChange}
+                    />
+                </Form.Field>
+                <Form.Field>
+                    <label>Avatar</label>
+                    <input
+                        type="file"
+                        name="avatar"
                         onChange={this.handleFormChange}
                     />
                 </Form.Field>
