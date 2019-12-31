@@ -9,9 +9,7 @@ export default class RestaurantInfo extends React.Component{
         super(props)
     }
 
-    render(props){
-        // console.log(this.props.info)
-        // debugger
+    render(){
         return(
             <Fragment>
             <Card fluid>
@@ -30,32 +28,33 @@ export default class RestaurantInfo extends React.Component{
                     </a>
                 </Card.Content>}
             </Card>
-            <Card fluid>
+            {this.props.currentUser && <Card fluid 
+                color={this.props.currentUser.userAttending ? "green" : this.props.currentUser.userAttending === false ? "red" : null}>
                 
                 <Card.Content>
                     <Image
                     floated='right'
-                    size='mini'
-                    src='https://react.semantic-ui.com/images/avatar/large/steve.jpg'
+                    size='small'
+                    src={`http://localhost:3000/${this.props.currentUser.avatar}`}
                     />
-                    <Card.Header>Steve Sanders</Card.Header>
-                    <Card.Meta>Friends of Elliot</Card.Meta>
+                    <Card.Header>{this.props.currentUser.user.first_name} {this.props.currentUser.user.last_name}</Card.Header>
+                    <Card.Meta>{this.props.currentUser.user.occupation}</Card.Meta>
                     <Card.Description>
-                    Steve wants to add you to the group <strong>best friends</strong>
+                    You will be {this.props.currentUser.userAttending ? <strong>attending</strong> : this.props.currentUser.userAttending === false ? <strong>not attending</strong> : <strong>attending?</strong> }
                     </Card.Description>
                 </Card.Content>
-                <Card.Content extra>
+                {this.props.status == "completed" ? null : <Card.Content extra>
                     <div className='ui two buttons'>
-                    <Button basic color='green'>
-                        Approve
-                    </Button>
-                    <Button basic color='red'>
-                        Decline
-                    </Button>
+                        <Button basic color='green' onClick={()=>this.props.submitAttending(true)}>
+                            Attending
+                        </Button>
+                        <Button basic color='red' onClick={()=>this.props.submitAttending(false)}>
+                            Not Attending
+                        </Button>
                     </div>
-                </Card.Content>
+                </Card.Content>}
 
-            </Card>
+            </Card>}
             </Fragment>
         )
     }

@@ -15,7 +15,7 @@ class Home extends React.Component{
         const {future_meetups, wait_queue, past_meetups} = this.props.currentUser
         return (
             <div>
-                {wait_queue ? <Pending wait_queue={wait_queue}/> : future_meetups.length > 0 ? <Matched future_meetups={future_meetups[0]}/> : <SubmitReq submitFoodChoice={this.props.submitFoodChoice}/> }
+                {wait_queue ? <Pending wait_queue={wait_queue}/> : future_meetups.length > 0 ? <Matched future_meetups={future_meetups[0]} currentUser={this.props.currentUser} /> : <SubmitReq submitFoodChoice={this.props.submitFoodChoice}/> }
                 
                 {/* Might need to make nested terinary?? */}
                 {/* {future_meetups.length > 0 ? <Matched future_meetups={future_meetups}/> : <SubmitReq submitFoodChoice={this.props.submitFoodChoice}/> } */}

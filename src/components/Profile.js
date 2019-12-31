@@ -37,7 +37,9 @@ export default class Profile extends React.Component {
                     id: this.state.currentUser.id,
                     first_name: this.state.currentUser.first_name,
                     last_name: this.state.currentUser.last_name,
-                    username: this.state.currentUser.username
+                    username: this.state.currentUser.username,
+                    mantra: this.state.currentUser.mantra,
+                    occupation: this.state.currentUser.occupation
                 }
             
             })
@@ -77,8 +79,26 @@ export default class Profile extends React.Component {
                                 onChange={this.updateState} 
                             />
                         </Form.Field>
-                        <FormButton>Submit</FormButton>
                     </Form.Group>
+                    <Form.Group widths="equal">
+                        <Form.Field>
+                            <label>Occupation</label>
+                            <input 
+                                name="occupation"
+                                value={this.state.currentUser.occupation}
+                                onChange={this.updateState} 
+                            />
+                        </Form.Field>
+                        <Form.Field>
+                            <label>Mantra</label>
+                            <input 
+                                name="mantra"
+                                value={this.state.currentUser.mantra}
+                                onChange={this.updateState} 
+                            />
+                        </Form.Field>
+                    </Form.Group>
+                    <FormButton>Submit</FormButton>
                 </Form>
             </Segment>
         )

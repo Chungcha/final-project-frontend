@@ -1,8 +1,9 @@
 .welcome {
     background-image: url("../images/kevin-curtis-QlnUpMED6Qs-unsplash.jpg");
     background-size: 100%;
+    /* background-position: center; */
     background-repeat: no-repeat;
-    height: 400px;
+    height: 800px;
     position: relative;
     z-index: 1;
 }
@@ -13,4 +14,19 @@ img.logo {
     padding: 10px;
     position: absolute;
     z-index: 2;
+}
+
+#loginForm {
+    width: 90%;
+    margin: auto;
+    top: -20px;
+    z-index: 2;
+    /* box-shadow: 0px 0px 0px 10px black */
+}
+
+#loginHeader {
+    margin-top: 230px;
+    color: white;
+    font-size: 60px;
+    text-shadow: 0px 0px 10px purple;
 }

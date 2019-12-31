@@ -82,7 +82,7 @@ class App extends React.Component{
         <Route exact path="/profile" render={()=>{ return this.state.currentUser ? <Profile currentUser={this.state.currentUser} updateCurrentUser={this.updateCurrentUser} /> : <Redirect to="/"/>
     }}/>
 
-        <Route exact path = "/history" render={()=>{ return this.state.currentUser ? <History pastMeetups={this.state.currentUser.past_meetups}/> : <Redirect to="/"/>}}/>
+        <Route exact path = "/history" render={()=>{ return this.state.currentUser ? <History pastMeetups={this.state.currentUser.past_meetups} currentUser={this.state.currentUser}/> : <Redirect to="/"/>}}/>
       </div>
     )
   }

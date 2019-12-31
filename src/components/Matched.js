@@ -20,7 +20,8 @@ export default class Matched extends React.Component{
         restaurantInfo: {
           photos: []
         }
-      }
+      },
+      status: ""
     }
   }
 
@@ -33,15 +34,39 @@ export default class Matched extends React.Component{
           })
             .then(response => response.json())
             .then(meetupData=>{
-              // debugger
+
               this.setState({meetupData})})
+    }
+    //Just add a togging function and do this same fetch.  Use current user to identify the user and meetup id to find the user_meetup, plug in the same setstate data on the return.
+
+    submitAttending = (boolean) => {
+      if (this.state.meetupData.meetup.users.find((userObj)=> userObj.user.username === this.props.currentUser.username).userAttending === boolean) {
+        return null
+      } else {
+      const objConfig = {
+        method: "POST",
+        headers: {
+            "Authorization": `Bearer ${localStorage.getItem("jwt")}`,
+            "Content-Type": "Application/json",
+            "Accept": "Application/json"
+        },
+        body: JSON.stringify({meetup_id: this.props.future_meetups.id, attending: boolean})
+      }
+      fetch("http://localhost:3000/toggleAttending", objConfig)
+      .then(response => response.json())
+      .then(meetupData=>this.setState({meetupData}))
+      }
     }
 
     renderer = ({ days, hours, minutes, seconds, completed }) => {
       if (completed){
-        return <span>Meetup has taken place!</span>
+        if (this.state.status !== "completed"){
+          this.setState({
+          status: "completed"
+        })}
+        return <span style={{"margin":"auto"}}>Meetup has taken place!</span>
       } else {
-      return <span>{days} day, {hours} hours, {minutes}, and {seconds} seconds before your next meetup!</span>
+      return <span style={{"margin":"auto"}}>{days} day, {hours} hours, {minutes}, and {seconds} seconds before your next meetup!</span>
       }
     }
 
@@ -58,7 +83,7 @@ export default class Matched extends React.Component{
                     as={Countdown}/>
                 </Grid.Row>
 
-                <Grid.Row columns={3}>
+                <Grid.Row columns={3} centered>
                   <Grid.Column>
                     <Card fluid>
                     {this.state.meetupData.meetup.restaurantInfo && <MyMapComponent restaurantCenter={this.state.meetupData.meetup.restaurantInfo.coordinates}/>}
@@ -66,7 +91,13 @@ export default class Matched extends React.Component{
                   </Grid.Column>
 
                   <Grid.Column>
-                    <RestaurantInfo info={this.state.meetupData.meetup.restaurantInfo}/>
+
+                    <RestaurantInfo 
+                      info={this.state.meetupData.meetup.restaurantInfo}
+                      status={this.state.status}
+                      submitAttending={this.submitAttending}
+                      currentUser={this.state.meetupData.meetup.users.find((userObj)=> userObj.user.username === this.props.currentUser.username)}
+                    />
                   </Grid.Column>
 
                   <Grid.Column>

@@ -6,9 +6,11 @@ export default class RegistrationForm extends React.Component {
 
     state={
         newUserInfo:{
+            username: "",
             first_name: "",
             last_name: "",
-            username: "",
+            occupation: "",
+            mantra:"",
             password: "",
             confirmPassword: "",
             avatar: {}
@@ -81,6 +83,15 @@ export default class RegistrationForm extends React.Component {
         return (
             <Form onSubmit={this.submitNewUserInfo}>
                 <Form.Field>
+                    <label>Username</label>
+                    <input 
+                        placeholder="Username" 
+                        name="username" 
+                        value={this.state.username}
+                        onChange={this.handleFormChange}
+                    />
+                </Form.Field>
+                <Form.Field>
                     <label>First Name</label>
                     <input 
                         placeholder="First Name" 
@@ -99,11 +110,20 @@ export default class RegistrationForm extends React.Component {
                     />
                 </Form.Field>
                 <Form.Field>
-                    <label>Username</label>
+                    <label>Occupation</label>
                     <input 
-                        placeholder="Username" 
-                        name="username" 
-                        value={this.state.username}
+                        placeholder="Occupation" 
+                        name="occupation" 
+                        value={this.state.occupation}
+                        onChange={this.handleFormChange}
+                    />
+                </Form.Field>
+                <Form.Field>
+                    <label>Mantra</label>
+                    <input 
+                        placeholder="Mantra" 
+                        name="mantra" 
+                        value={this.state.mantra}
                         onChange={this.handleFormChange}
                     />
                 </Form.Field>
