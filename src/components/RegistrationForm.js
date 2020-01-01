@@ -91,24 +91,26 @@ export default class RegistrationForm extends React.Component {
                         onChange={this.handleFormChange}
                     />
                 </Form.Field>
-                <Form.Field>
-                    <label>First Name</label>
-                    <input 
-                        placeholder="First Name" 
-                        onChange={this.handleFormChange} 
-                        name="first_name" 
-                        value={this.state.first_name}
-                    />
-                </Form.Field>
-                <Form.Field>
-                    <label>Last Name</label>
-                    <input 
-                        placeholder="Last Name" 
-                        name="last_name" 
-                        value={this.state.last_name}
-                        onChange={this.handleFormChange}
-                    />
-                </Form.Field>
+                <Form.Group widths='equal'>
+                    <Form.Field>
+                        <label>First Name</label>
+                        <input 
+                            placeholder="First Name" 
+                            onChange={this.handleFormChange} 
+                            name="first_name" 
+                            value={this.state.first_name}
+                        />
+                    </Form.Field>
+                    <Form.Field>
+                        <label>Last Name</label>
+                        <input 
+                            placeholder="Last Name" 
+                            name="last_name" 
+                            value={this.state.last_name}
+                            onChange={this.handleFormChange}
+                        />
+                    </Form.Field>
+                </Form.Group>
                 <Form.Field>
                     <label>Occupation</label>
                     <input 
@@ -127,26 +129,28 @@ export default class RegistrationForm extends React.Component {
                         onChange={this.handleFormChange}
                     />
                 </Form.Field>
-                <Form.Field>
-                    <label>Password</label>
-                    <input 
-                        placeholder="Password" 
-                        type="password" 
-                        name="password"
-                        value={this.state.password}
-                        onChange={this.handleFormChange}
-                    />
-                </Form.Field>
-                <Form.Field>
-                    <label>Confirm Password</label>
-                    <input 
-                        placeholder="Confirm Password" 
-                        type="password" 
-                        name="confirmPassword"
-                        value={this.state.confirmPassword}
-                        onChange={this.handleFormChange}
-                    />
-                </Form.Field>
+                <Form.Group widths='equal'>
+                    <Form.Field>
+                        <label>Password</label>
+                        <input 
+                            placeholder="Password" 
+                            type="password" 
+                            name="password"
+                            value={this.state.password}
+                            onChange={this.handleFormChange}
+                        />
+                    </Form.Field>
+                    <Form.Field>
+                        <label>Confirm Password</label>
+                        <input 
+                            placeholder="Confirm Password" 
+                            type="password" 
+                            name="confirmPassword"
+                            value={this.state.confirmPassword}
+                            onChange={this.handleFormChange}
+                        />
+                    </Form.Field>
+                </Form.Group>
                 <Form.Field>
                     <label>Avatar</label>
                     <input

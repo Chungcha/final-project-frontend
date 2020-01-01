@@ -12,7 +12,7 @@ export default class Chatroom extends React.Component {
     }
 
     componentDidMount = () => {
-        fetch(`${API_ROOT}/chatrooms/1`, {headers: HEADERS})
+        fetch(`${API_ROOT}/chatrooms/${(this.props.chatroomId)}`, {headers: HEADERS})
         .then(res=>res.json())
         .then(chatroom => this.setState({ chatroom }))
     }
@@ -33,10 +33,10 @@ export default class Chatroom extends React.Component {
               onReceived={this.handleReceivedChatroom}
             />
           
-              <Cable
+              {chatroom && <Cable
                 chatroom={chatroom}
                 handleReceivedMessage={this.handleReceivedMessage}
-              />
+              />}
     
             {/* <ul>{mapConversations(conversations, this.handleClick)}</ul> */}
             {chatroom ? (

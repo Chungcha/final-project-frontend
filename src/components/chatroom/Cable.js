@@ -5,7 +5,7 @@ const Cable = ({ chatroom, handleReceivedMessage }) => {
   return (
     <Fragment>
         <ActionCable
-        channel={{ channel: 'MessagesChannel', chatroom: 1 }}
+        channel={{ channel: 'MessagesChannel', chatroom: chatroom.id }}
         onReceived={handleReceivedMessage}
         />
     </Fragment>

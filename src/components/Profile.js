@@ -1,5 +1,5 @@
 import React from "react"
-import { Container, Image, Segment, Form, FormButton } from "semantic-ui-react"
+import { Grid, Image, Segment, Form, FormButton } from "semantic-ui-react"
 
 export default class Profile extends React.Component {
     
@@ -51,54 +51,60 @@ export default class Profile extends React.Component {
 
     render(){
         return(
-            <Segment>
-                <Form onSubmit={this.submitChanges}>
-                    <Image src={`http://localhost:3000/${this.props.currentUser.avatar}`} size="medium"/>
-                    <Form.Field>
-                        <label>Username</label>
-                        <input
-                            name="username"
-                            value={this.state.currentUser.username}
-                            onChange={this.updateState}
-                        />
-                    </Form.Field>
-                    <Form.Group widths="equal">
-                        <Form.Field>
-                            <label>First Name</label>
-                            <input 
-                                name="first_name"
-                                value={this.state.currentUser.first_name}
-                                onChange={this.updateState} 
-                            />
-                        </Form.Field>
-                        <Form.Field>
-                            <label>Last Name</label>
-                            <input 
-                                name="last_name"
-                                value={this.state.currentUser.last_name}
-                                onChange={this.updateState} 
-                            />
-                        </Form.Field>
-                    </Form.Group>
-                    <Form.Group widths="equal">
-                        <Form.Field>
-                            <label>Occupation</label>
-                            <input 
-                                name="occupation"
-                                value={this.state.currentUser.occupation}
-                                onChange={this.updateState} 
-                            />
-                        </Form.Field>
-                        <Form.Field>
-                            <label>Mantra</label>
-                            <input 
-                                name="mantra"
-                                value={this.state.currentUser.mantra}
-                                onChange={this.updateState} 
-                            />
-                        </Form.Field>
-                    </Form.Group>
-                    <FormButton>Submit</FormButton>
+            <Segment style={{"margin-top":"5%", "margin-left":"10%", "margin-right":"10%"}}>
+                <Form onSubmit={this.submitChanges} style={{"margin-right":"4%"}}>
+                    <Grid>
+                        <Grid.Column width={6}>
+                            <Image centered src={`http://localhost:3000/${this.props.currentUser.avatar}`} size="medium"/>
+                        </Grid.Column>
+                        <Grid.Column width={10} centered>
+                            <Form.Field>
+                                <label>Username</label>
+                                <input
+                                    name="username"
+                                    value={this.state.currentUser.username}
+                                    onChange={this.updateState}
+                                />
+                            </Form.Field>
+                            <Form.Group widths="equal">
+                                <Form.Field>
+                                    <label>First Name</label>
+                                    <input 
+                                        name="first_name"
+                                        value={this.state.currentUser.first_name}
+                                        onChange={this.updateState} 
+                                    />
+                                </Form.Field>
+                                <Form.Field>
+                                    <label>Last Name</label>
+                                    <input 
+                                        name="last_name"
+                                        value={this.state.currentUser.last_name}
+                                        onChange={this.updateState} 
+                                    />
+                                </Form.Field>
+                            </Form.Group>
+                            <Form.Group widths="equal">
+                                <Form.Field>
+                                    <label>Occupation</label>
+                                    <input 
+                                        name="occupation"
+                                        value={this.state.currentUser.occupation}
+                                        onChange={this.updateState} 
+                                    />
+                                </Form.Field>
+                                <Form.Field>
+                                    <label>Mantra</label>
+                                    <input 
+                                        name="mantra"
+                                        value={this.state.currentUser.mantra}
+                                        onChange={this.updateState} 
+                                    />
+                                </Form.Field>
+                            </Form.Group>
+                            <FormButton>Submit</FormButton>
+                        </Grid.Column>
+                    </Grid>
                 </Form>
             </Segment>
         )

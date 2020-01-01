@@ -1,5 +1,6 @@
 import React from "react"
 import { Form } from "semantic-ui-react"
+import swal from 'sweetalert';
 
 const URL = "http://localhost:3000/"
 
@@ -38,7 +39,7 @@ export default class LoginForm extends React.Component {
         .then(response => response.json())
         .then(userData=>{
             if (userData.message) {
-                alert (userData.message)
+                swal(userData.message)
             } else {
             localStorage.setItem("jwt", userData.jwt)
             this.props.updateCurrentUser(userData.user)

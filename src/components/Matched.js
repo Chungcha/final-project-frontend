@@ -17,6 +17,9 @@ export default class Matched extends React.Component{
     this.state={
       meetupData: {
         meetup: {
+          chatroom: {
+            id: null
+          },
           users: []
         },
         restaurantInfo: {
@@ -64,7 +67,9 @@ export default class Matched extends React.Component{
         })}
         return <span style={{"margin":"auto"}}>Meetup has taken place!</span>
       } else {
-      return <span style={{"margin":"auto"}}>{days} day, {hours} hours, {minutes}, and {seconds} seconds before your next meetup!</span>
+      return <span style={{"margin":"auto"}}>
+        {days} day{days == 0 ? "s" : null}, {hours} hours, {minutes} minute{minutes == 1 ? null : "s"}, and {seconds} second{seconds == 1 ? null : "s"} before your next meetup!
+      </span>
       }
     }
 
@@ -73,7 +78,7 @@ export default class Matched extends React.Component{
         // console.log(this.state.meetupData.meetup.restaurantInfo.photos)
         return (
             <Segment>
-              <Grid divided='vertically'>
+              {this.state.meetupData.meetup && <Grid divided='vertically'>
                 <Grid.Row columns={1}>
                   <Header 
                     date={this.props.future_meetups.datetime}
@@ -82,37 +87,37 @@ export default class Matched extends React.Component{
                 </Grid.Row>
 
                 <Grid.Row columns={3} centered>
-                  <Grid.Column>
+                  <Grid.Column width={5} >
                     <Card fluid>
-                    {this.state.meetupData.meetup.restaurantInfo && <MyMapComponent restaurantCenter={this.state.meetupData.meetup.restaurantInfo.coordinates}/>}
+                    {/* {this.state.meetupData.meetup.restaurantInfo && <MyMapComponent restaurantCenter={this.state.meetupData.meetup.restaurantInfo.coordinates}/>} */}
                     </Card>
                   </Grid.Column>
 
-                  <Grid.Column>
+                  <Grid.Column width={6}>
 
-                    <RestaurantInfo 
+                    {this.state.meetupData.meetup && <RestaurantInfo 
                       info={this.state.meetupData.meetup.restaurantInfo}
                       status={this.state.status}
                       submitAttending={this.submitAttending}
                       currentUser={this.state.meetupData.meetup.users.find((userObj)=> userObj.user.username === this.props.currentUser.username)}
-                    />
+                    />}
                   </Grid.Column>
 
-                  <Grid.Column>
-                    <Card>
+                  <Grid.Column width={5}>
+                    <Card centered style={{"width":"100%"}}>
                     {this.state.meetupData.meetup.restaurantInfo && <Pictures pictures={this.state.meetupData.meetup.restaurantInfo.photos}/>}
                     </Card>
                   </Grid.Column>
                 </Grid.Row>
 
                 <Grid.Row columns={1}>
-                  <Chatroom />
+                  {this.state.meetupData.meetup.chatroom.id && <Chatroom chatroomId={this.state.meetupData.meetup.chatroom.id}/>}
                 </Grid.Row>
 
                 <Grid.Row columns={4}>
                   <UsersContainer users={this.state.meetupData.meetup.users}/>
                 </Grid.Row>
-              </Grid>
+              </Grid>}
             </Segment>
         )
     }
