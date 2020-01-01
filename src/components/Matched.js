@@ -7,6 +7,8 @@ import Pictures from "./Pictures"
 import RestaurantInfo from "./RestaurantInfo"
 import UsersContainer from "../containers/UsersContainer"
 import "pure-react-carousel/dist/react-carousel.es.css"
+import Chatroom from "./chatroom/Chatroom"
+import { HEADERS } from "../constants"
 
 export default class Matched extends React.Component{
 
@@ -27,11 +29,7 @@ export default class Matched extends React.Component{
 
     componentDidMount(){
         const { id } = this.props.future_meetups
-        fetch(`http://localhost:3000/meetups/${id}`, {
-            headers: {
-              "Authorization": `Bearer ${localStorage.getItem("jwt")}`
-            }
-          })
+        fetch(`http://localhost:3000/meetups/${id}`, {headers: HEADERS})
             .then(response => response.json())
             .then(meetupData=>{
 
@@ -105,6 +103,10 @@ export default class Matched extends React.Component{
                     {this.state.meetupData.meetup.restaurantInfo && <Pictures pictures={this.state.meetupData.meetup.restaurantInfo.photos}/>}
                     </Card>
                   </Grid.Column>
+                </Grid.Row>
+
+                <Grid.Row columns={1}>
+                  <Chatroom />
                 </Grid.Row>
 
                 <Grid.Row columns={4}>

@@ -6,6 +6,7 @@ import History from "./containers/History"
 import Profile from "./components/Profile"
 import { Route, Redirect } from "react-router-dom";
 import Nav from "./components/Nav"
+import { HEADERS } from "./constants"
 // import { Router, Link } from "@reach/router"
 
 const URL = "http://localhost:3000/"
@@ -21,11 +22,7 @@ class App extends React.Component{
 
   componentDidMount(){
     if (localStorage.getItem("jwt")) {
-      fetch(`${URL}profile`, {
-        headers: {
-          "Authorization": `Bearer ${localStorage.getItem("jwt")}`
-        }
-      })
+      fetch(`${URL}profile`, {headers: HEADERS})
       .then(response=>response.json())
       .then(userData=>{this.updateCurrentUser(userData.user)})
     }
