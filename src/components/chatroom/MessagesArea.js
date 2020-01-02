@@ -5,8 +5,8 @@ import { Comment } from "semantic-ui-react"
 const MessagesArea = ({chatroom: { id, messages }, currentUser}) => {
   return (
     <Comment.Group>
-      <div style={{"height":"200px", "width":"100%", "overflow":"scroll"}}>
-        {orderedMessages(messages)}
+      <div style={{"height":"200px", "width":"87vw", "overflow":"auto", "marginLeft":"3%", "marginTop":"3%"}}>
+        {messages && orderedMessages(messages)}
       </div>
       <NewMessageForm chatroom_id={id} user_id={currentUser.id}/>
     </Comment.Group>
@@ -25,7 +25,7 @@ const orderedMessages = messages => {
     return <Comment key={message.id}>
         {/* <Comment.Avatar/> */}
         <Comment.Content>
-            <Comment.Author>{message.user.first_name}</Comment.Author>
+            <Comment.Author>{`${message.user.first_name}:`}</Comment.Author>
             {/* <Comment.Metadata>
                 Time
             </Comment.Metadata> */}

@@ -33,7 +33,7 @@ class Login extends React.Component {
                         <Header as="h3" style={{"textAlign":"center"}}>
                             Why MealMates...
                         </Header>
-                        <Image src={charlie} style={{"float":"right","maxWidth":"200px","height":"auto", "top":"-13px", "left":"9%"}}/>
+                        <Image src={charlie} style={{"float":"right","maxWidth":"200px","height":"auto", "top":"-21px", "left":"9%"}}/>
                         <div style={{"paddingLeft":"90px", "textAlign":"justify"}}>
                         <p style={{"fontSize":"larger"}}><span style={{"fontSize":"25px"}}>"</span>Last July I moved from Michigan to DC to enroll in Flatiron School.  With no friends in the area or ideas for places to eat, I googled meetups in the area and found one for recent transplants in the area.  The meetup took place in a very dark bar with much too loud music as you had to scream at the person next to you to ask how their day was. I wanted to make something simplier that could save anyone who would like to get some food and maybe make new friends from the same terrible experience.<span style={{"fontSize":"25px"}}>"</span></p>
                         <p style={{"fontSize":"larger"}}>~Charlie Chung</p>

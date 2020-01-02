@@ -33,7 +33,7 @@ class NewMessageForm extends React.Component {
 
   render = () => {
     return (
-      <div className="newMessageForm">
+      <div className="newMessageForm" style={{"marginLeft":"2%", "marginBottom":"3%"}}>
         <form onSubmit={this.handleSubmit}>
           <label>New Message:</label>
           <br />
@@ -41,6 +41,7 @@ class NewMessageForm extends React.Component {
             type="text"
             value={this.state.body}
             onChange={this.handleChange}
+            style={{"marginRight":"3px"}}
           />
           <input type="submit" />
         </form>

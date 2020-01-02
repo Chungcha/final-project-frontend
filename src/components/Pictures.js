@@ -22,6 +22,7 @@ const Pictures = (props) => (
             naturalSlideWidth={1}
             naturalSlideHeight={1}
             totalSlides={3}
+            style={{"height":"478px"}}
         >
             <Slider>
                 <Slide tag="a" index={0}>

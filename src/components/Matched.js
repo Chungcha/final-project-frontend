@@ -88,8 +88,8 @@ export default class Matched extends React.Component{
 
                 <Grid.Row columns={3} centered>
                   <Grid.Column width={5} >
-                    <Card fluid>
-                    {this.state.meetupData.meetup.restaurantInfo && <MyMapComponent restaurantCenter={this.state.meetupData.meetup.restaurantInfo.coordinates}/>}
+                    <Card fluid style={{"height":"480px"}}>
+                    {this.state.meetupData.meetup.restaurantInfo && <MyMapComponent restaurantCenter={this.state.meetupData.meetup.restaurantInfo.coordinates} style={{"height":"480px"}}/>}
                     </Card>
                   </Grid.Column>
 
