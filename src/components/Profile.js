@@ -54,8 +54,8 @@ export default class Profile extends React.Component {
 
     render(){
         return(
-            <Segment style={{"margin-top":"5%", "margin-left":"10%", "margin-right":"10%"}}>
-                <Form onSubmit={this.submitChanges} style={{"margin-right":"4%"}}>
+            <Segment style={{"marginTop":"5%", "marginLeft":"10%", "marginRight":"10%"}}>
+                <Form onSubmit={this.submitChanges} style={{"marginRight":"4%"}}>
                     <Grid>
                         <Grid.Column width={6}>
                             <Image centered src={`http://localhost:3000/${this.props.currentUser.avatar}`} size="medium"/>
