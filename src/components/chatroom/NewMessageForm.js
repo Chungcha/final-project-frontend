@@ -4,7 +4,8 @@ import { API_ROOT, HEADERS } from '../../constants';
 class NewMessageForm extends React.Component {
   state = {
     body: '',
-    chatroom_id: ""
+    chatroom_id: "",
+    user_id: ""
   };
 
 //   componentWillReceiveProps = nextProps => {
@@ -12,7 +13,7 @@ class NewMessageForm extends React.Component {
 //   };
 
   componentDidMount(){
-      this.setState({ chatroom_id: this.props.chatroom_id })
+      this.setState({ chatroom_id: this.props.chatroom_id, user_id: this.props.user_id})
   }
 
   handleChange = e => {

@@ -1,11 +1,11 @@
 
 import React, {createRef} from "react"
-import { Button, Divider, Grid, Segment, Image, Header, Container } from "semantic-ui-react"
+import { Divider, Grid, Segment, Image, Header, Container } from "semantic-ui-react"
 import LoginForm from "./LoginForm"
 import RegistrationForm from "./RegistrationForm"
 import "../styles/login.css"
 import logo_white from "../images/logo_white.png"
-import logo_black from "../images/logo_black.png"
+// import logo_black from "../images/logo_black.png"
 import priscilla from "../images/priscilla-du-preez-W3SEyZODn8U-unsplash.jpg"
 import charlie from "../images/charlie.jpg"
 
@@ -28,32 +28,32 @@ class Login extends React.Component {
                     </Button.Group>
                     </div> */}
                 </div>
-                <Container style={{"height":"750px"}}>
+                <Container style={{"height":"725px"}}>
                     <Segment style={{"backgroundColor":"sky-blue", "height":"320px", "margin": "30px", "width": "90%"}}>
                         <Header as="h3" style={{"textAlign":"center"}}>
                             Why MealMates...
                         </Header>
-                        <Image src={charlie} style={{"float":"right","max-width":"200px","height":"auto", "top":"-13px", "left":"9%"}}/>
-                        <div style={{"padding-left":"90px", "text-align":"justify"}}>
-                        <p style={{"font-size":"larger"}}><span style={{"font-size":"25px"}}>"</span>Last July I moved from Michigan to DC to enroll in Flatiron School.  With no friends in the AREA or ideas for places to eat, I googled meetups in the area and found one for recent transplants in the area.  The meetup took place in a very dark bar with much too loud music as you had to scream at the person next to you to ask how their day was. I wanted to make something simplier that could save anyone who would like to get some food and maybe make new friends from the same terrible experience.<span style={{"font-size":"25px"}}>"</span></p>
-                        <p style={{"font-size":"larger"}}>~Charlie Chung</p>
+                        <Image src={charlie} style={{"float":"right","maxWidth":"200px","height":"auto", "top":"-13px", "left":"9%"}}/>
+                        <div style={{"paddingLeft":"90px", "textAlign":"justify"}}>
+                        <p style={{"fontSize":"larger"}}><span style={{"fontSize":"25px"}}>"</span>Last July I moved from Michigan to DC to enroll in Flatiron School.  With no friends in the area or ideas for places to eat, I googled meetups in the area and found one for recent transplants in the area.  The meetup took place in a very dark bar with much too loud music as you had to scream at the person next to you to ask how their day was. I wanted to make something simplier that could save anyone who would like to get some food and maybe make new friends from the same terrible experience.<span style={{"fontSize":"25px"}}>"</span></p>
+                        <p style={{"fontSize":"larger"}}>~Charlie Chung</p>
                         </div>
                     </Segment>
-                    <Header as="h2" style={{"margin-top":"30px", "textAlign":"center"}}>
+                    <Header as="h2" style={{"marginTop":"30px", "textAlign":"center"}}>
                         How it works..
                     </Header>
                     <Grid>
                         <Grid.Row>
                             <Grid.Column width={5}>
-                                <Image src={priscilla} style={{"max-width":"400px","height":"auto"}}/>
+                                <Image src={priscilla} style={{"maxWidth":"400px","height":"auto", "left":"-20%"}}/>
                             </Grid.Column>
                             <Grid.Column width={6}>
-                                <Segment fluid>
-                                <p style={{size:"50px"}}>FIRST DECIDE ON WHAT TIME OF FOOD YOU'D LIKE TO EAT.  THEN MEALMATES DOES ALL THE WORK.  MEALMATE WILL USE AN ALGORITHM IN COORDINATION WITH THE YELP API TO MATCH YOU UP WITH 3 OTHER USERS WITH SIMILAR FOOD TASTES IN YOUR AREA.  MEALMATES WILL SCHEDULE A DINNER TIME AT A RANDOMLY CHOSEN RESTAURANT AND IT IS YOUR OPTION TO ATTEND OR NOT.</p>
+                                <Segment>
+                                <p style={{"fontSize":"large"}}>First decide on what time of food you'd like to eat.  Then Mealmates does all the work.  Mealmate will use a patented algorithm to match you up with 3 other users with similar food tastes in your area.  Mealmates will then schedule a dinner time in coordination with the Yelp api at a randomly chosen restaurant.</p>
                                 </Segment>
                             </Grid.Column>
                             <Grid.Column width={5}>
-                                <Image src={priscilla} style={{"max-width":"400px","height":"auto"}}/>
+                                <Image src={priscilla} style={{"maxWidth":"400px","height":"auto"}}/>
                             </Grid.Column>
                         </Grid.Row>
                     </Grid>

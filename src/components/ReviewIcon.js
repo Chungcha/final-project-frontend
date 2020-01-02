@@ -53,12 +53,6 @@ import { render } from "@testing-library/react"
 
 export default class ReviewIcon extends React.Component {
 
-
-    constructor(props){
-        super(props)
-    }
-
-
     iconPicker = () => {
         switch (this.props.rating) {
             case 0:

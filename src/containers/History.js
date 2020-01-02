@@ -6,8 +6,8 @@ export default class History extends React.Component{
 
     render(){
         return(
-            <Container>
-                {this.props.pastMeetups.map((meetup)=><Matched future_meetups={meetup} currentUser={this.props.currentUser}/>)}
+            <Container style={{"marginTop":"4%"}}>
+                {this.props.pastMeetups.map((meetup)=><Matched future_meetups={meetup} key={meetup.id} currentUser={this.props.currentUser}/>)}
             </Container>
         )
     }

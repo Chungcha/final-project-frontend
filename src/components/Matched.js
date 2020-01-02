@@ -2,7 +2,7 @@ import React from "react"
 import { Segment } from "semantic-ui-react"
 import MyMapComponent from "./MyMapComponent"
 import Countdown from "react-countdown-now"
-import { Header, Grid, Image, Card } from "semantic-ui-react"
+import { Header, Grid, Card } from "semantic-ui-react"
 import Pictures from "./Pictures"
 import RestaurantInfo from "./RestaurantInfo"
 import UsersContainer from "../containers/UsersContainer"
@@ -89,7 +89,7 @@ export default class Matched extends React.Component{
                 <Grid.Row columns={3} centered>
                   <Grid.Column width={5} >
                     <Card fluid>
-                    {/* {this.state.meetupData.meetup.restaurantInfo && <MyMapComponent restaurantCenter={this.state.meetupData.meetup.restaurantInfo.coordinates}/>} */}
+                    {this.state.meetupData.meetup.restaurantInfo && <MyMapComponent restaurantCenter={this.state.meetupData.meetup.restaurantInfo.coordinates}/>}
                     </Card>
                   </Grid.Column>
 
@@ -111,7 +111,10 @@ export default class Matched extends React.Component{
                 </Grid.Row>
 
                 <Grid.Row columns={1}>
-                  {this.state.meetupData.meetup.chatroom.id && <Chatroom chatroomId={this.state.meetupData.meetup.chatroom.id}/>}
+                  <Card centered style={{"width": "150%"}}>
+                  {this.state.meetupData.meetup.chatroom.id && <Chatroom chatroomId={this.state.meetupData.meetup.chatroom.id} 
+                  currentUser={this.state.meetupData.meetup.users.find((userObj)=> userObj.user.username === this.props.currentUser.username)}/>}
+                  </Card>
                 </Grid.Row>
 
                 <Grid.Row columns={4}>

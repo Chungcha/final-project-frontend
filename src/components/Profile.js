@@ -1,5 +1,6 @@
 import React from "react"
 import { Grid, Image, Segment, Form, FormButton } from "semantic-ui-react"
+import swal from 'sweetalert';
 
 export default class Profile extends React.Component {
     
@@ -46,7 +47,9 @@ export default class Profile extends React.Component {
           }
           fetch(`http://localhost:3000/users/${this.state.currentUser.id}`, objConfig)
           .then(response => response.json())
-          .then(userData=>this.props.updateCurrentUser(userData.user))
+          .then(userData=>{
+            swal("Profile Information Updated!")
+            this.props.updateCurrentUser(userData.user)})
     }
 
     render(){

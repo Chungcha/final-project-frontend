@@ -2,8 +2,6 @@ import React from "react"
 import { Form } from "semantic-ui-react"
 import swal from 'sweetalert';
 
-const URL = "http://localhost:3000/"
-
 export default class LoginForm extends React.Component {
     
     constructor(props){

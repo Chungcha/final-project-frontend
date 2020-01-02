@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import { ActionCable } from 'react-actioncable-provider';
 import { API_ROOT, HEADERS } from '../../constants';
 import MessagesArea from './MessagesArea';
@@ -27,9 +27,9 @@ export default class Chatroom extends React.Component {
     render = () => {
         const { chatroom } = this.state;
         return (
-          <div className="conversationsList">
+          <Fragment>
             <ActionCable
-              channel={{ channel: 'ChatroomsChannel' }}
+              channel={{ channel:'ChatroomsChannel', chatroom_id: this.props.chatroomId}}
               onReceived={this.handleReceivedChatroom}
             />
           
@@ -42,10 +42,11 @@ export default class Chatroom extends React.Component {
             {chatroom ? (
               <MessagesArea
                 chatroom={this.state.chatroom}
+                currentUser={this.props.currentUser.user}
                 //will need to format these props
               />
             ) : null}
-          </div>
+          </Fragment>
         );
       };
 

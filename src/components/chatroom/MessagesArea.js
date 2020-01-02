@@ -2,13 +2,13 @@ import React from 'react';
 import NewMessageForm from './NewMessageForm';
 import { Comment } from "semantic-ui-react"
 
-const MessagesArea = ({
-  chatroom: { id, messages },
-}) => {
+const MessagesArea = ({chatroom: { id, messages }, currentUser}) => {
   return (
     <Comment.Group>
-      <ul>{orderedMessages(messages)}</ul>
-      <NewMessageForm chatroom_id={id} />
+      <div style={{"height":"200px", "width":"100%", "overflow":"scroll"}}>
+        {orderedMessages(messages)}
+      </div>
+      <NewMessageForm chatroom_id={id} user_id={currentUser.id}/>
     </Comment.Group>
   );
 };

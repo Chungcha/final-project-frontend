@@ -1,13 +1,8 @@
 import React, { Fragment } from "react"
 import { Card, Image, Button } from 'semantic-ui-react'
-import regular_0 from "../web_and_ios/regular/regular_0.png"
 import ReviewIcon from "./ReviewIcon"
 
 export default class RestaurantInfo extends React.Component{
-
-    constructor(props){
-        super(props)
-    }
 
     render(){
         return(
