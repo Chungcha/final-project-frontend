@@ -45,49 +45,73 @@ export default class SubmitReq extends React.Component{
             <Form.Field>
               <Radio
                 label='Italian'
-                checked=""
+                name='radioGroup'
+                value='Italian'
+                checked={this.state.value === 'Italian'}
+                onChange={this.handleChange}
               />
             </Form.Field>
             <Form.Field>
               <Radio
                 label='Korean'
-                checked=""
+                name='radioGroup'
+                value='Korean'
+                checked={this.state.value === 'Korean'}
+                onChange={this.handleChange}
               />
             </Form.Field>
             <Form.Field>
               <Radio
                 label='Salvadoran'
-                checked=""
+                name='radioGroup'
+                value='Salvadoran'
+                checked={this.state.value === 'Salvadoran'}
+                onChange={this.handleChange}
               />
             </Form.Field>
             <Form.Field>
               <Radio
                 label='Indian'
-                checked=""
+                name='radioGroup'
+                value='Indian'
+                checked={this.state.value === 'Indian'}
+                onChange={this.handleChange}
               />
             </Form.Field>
             <Form.Field>
               <Radio
                 label='Japanese'
-                checked=""
+                name='radioGroup'
+                value='Japanese'
+                checked={this.state.value === 'Japanese'}
+                onChange={this.handleChange}
               />
             </Form.Field>
             <Form.Field>
               <Radio
                 label='Thai'
-                checked=""
+                name='radioGroup'
+                value='Thai'
+                checked={this.state.value === 'Thai'}
+                onChange={this.handleChange}
               />
             </Form.Field>
             <Form.Field>
               <Radio
                 label='Soul'
-                checked=""
+                name='radioGroup'
+                value='Soul'
+                checked={this.state.value === 'Soul'}
+                onChange={this.handleChange}
               />
             </Form.Field>
             <Form.Field>
               <Radio
                 label='Vietnamese'
-                checked=""
+                name='radioGroup'
+                value='Vietnamese'
+                checked={this.state.value === 'Vietnamese'}
+                onChange={this.handleChange}
               />
             </Form.Field>
           </Form.Group>
