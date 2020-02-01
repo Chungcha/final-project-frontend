@@ -60,7 +60,7 @@ export default class Profile extends React.Component {
                         <Grid.Column width={6}>
                             <Image centered src={`http://localhost:3000/${this.props.currentUser.avatar}`} size="medium"/>
                         </Grid.Column>
-                        <Grid.Column width={10} centered>
+                        <Grid.Column width={10} centered="true">
                             <Form.Field>
                                 <label>Username</label>
                                 <input

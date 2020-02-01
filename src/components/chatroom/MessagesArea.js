@@ -1,16 +1,53 @@
 import React from 'react';
 import NewMessageForm from './NewMessageForm';
+import { animateScroll } from "react-scroll";
 import { Comment } from "semantic-ui-react"
 
-const MessagesArea = ({chatroom: { id, messages }, currentUser}) => {
-  return (
-    <Comment.Group>
-      <div style={{"height":"200px", "width":"87vw", "overflow":"auto", "marginLeft":"3%", "marginTop":"3%"}}>
-        {messages && orderedMessages(messages)}
-      </div>
-      <NewMessageForm chatroom_id={id} user_id={currentUser.id}/>
-    </Comment.Group>
-  );
+// const MessagesArea = ({chatroom: { id, messages }, currentUser}) => {
+//   return (
+//     <Comment.Group>
+//       <div style={{"height":"200px", "width":"83vw", "overflow":"auto", "marginLeft":"3%", "marginTop":"3%", "border":"1px solid black"}} >
+//         {messages && orderedMessages(messages)}
+//       </div>
+//       <NewMessageForm chatroom_id={id} user_id={currentUser.id}/>
+//     </Comment.Group>
+//   );
+// };
+
+class MessagesArea extends React.Component {
+
+  constructor(){
+    super()
+  }
+
+  componentDidMount() {
+    this.scrollToBottom();
+  }
+
+  componentDidUpdate() {
+    this.scrollToBottom();
+  }
+
+  scrollToBottom() {
+    const {chatroom: {id}} = this.props
+    animateScroll.scrollToBottom({
+      containerId: `chatgroup${id}`
+    });
+  }
+
+  render(){
+
+    const {chatroom: { id, messages }, currentUser} = this.props
+
+    return (
+      <Comment.Group>
+        <div id={`chatgroup${id}`} style={{"height":"200px", "width":"83vw", "overflow":"auto", "marginLeft":"3%", "marginTop":"3%", "border":"1px solid black"}} >
+          {messages && orderedMessages(messages)}
+        </div>
+        <NewMessageForm chatroom_id={id} user_id={currentUser.id}/>
+      </Comment.Group>
+    );
+  }
 };
 
 export default MessagesArea;
